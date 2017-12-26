@@ -1,4 +1,4 @@
-# ![Squirrel](http://www.squirrel-lang.org/images/simple_nut.png ".nut")VS.Squirrel
+# VS.Squirrel![Squirrel](http://www.squirrel-lang.org/images/simple_nut.png ".nut")
 
 Extending the Editor and Language Services for Squirrel.
 
