@@ -1,6 +1,6 @@
 # VS.Squirrel
-![Squirrel](http://www.squirrel-lang.org/images/simple_nut.png ".nut")
-Extending the Editor and Language Services for Squirrel.
+
+Extending the Editor and Language Services for ![Squirrel](http://www.squirrel-lang.org/images/simple_nut.png ".nut") Squirrel.
 
 Now In Development...
 
