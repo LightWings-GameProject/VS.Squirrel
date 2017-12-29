@@ -10,6 +10,8 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 using Squirrel.ClassificationDefinitions;
+using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Utilities;
 
 namespace Squirrel
 {
@@ -68,6 +70,15 @@ namespace Squirrel
 			var services = (IServiceContainer)this;
 			services.AddService(typeof(IOptionsService), OptionsService.CreateService, promote: true);
 			services.AddService(typeof(Service), Service.CreateService, promote: true);
+
+			// コンテンツタイプを列挙する
+			Trace.Listeners.Clear();
+			Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+			Trace.WriteLine("[Tag Start]:");
+			foreach (var c in ((IComponentModel)GetGlobalService(typeof(SComponentModel))).GetService<IContentTypeRegistryService>().ContentTypes)
+			{
+				Trace.WriteLine("[Tag]:(" + c.DisplayName + ")");
+			}
 		}
 
 		#endregion

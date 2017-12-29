@@ -41,7 +41,8 @@ namespace Squirrel.ClassificationDefinitions
 
 		public int GetCodeWindowManager(IVsCodeWindow pCodeWin, out IVsCodeWindowManager ppCodeWinMgr)
 		{
-			throw new NotImplementedException();
+			ppCodeWinMgr = null;
+			return VSConstants.E_NOTIMPL;
 		}
 	}
 }

@@ -55,23 +55,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ClassificationDefinitions\Constants.cs" />
-    <Compile Include="ClassificationDefinitions\FileAndContentTypes.cs" />
+    <Compile Include="Classification\Constants.cs" />
+    <Compile Include="Classification\FileAndContentTypes.cs" />
     <Compile Include="5_Highlighting Text\HighlightWordTag.cs" />
-    <Compile Include="ClassificationDefinitions\IOptionsService.cs" />
-    <Compile Include="ClassificationDefinitions\LanguageInfo.cs" />
-    <Compile Include="ClassificationDefinitions\LanguagePreferences.cs" />
-    <Compile Include="ClassificationDefinitions\OptionsService.cs" />
-    <Compile Include="ClassificationDefinitions\Service.cs" />
-    <Compile Include="ClassificationDefinitions\SettingsManagerCreator.cs" />
+    <Compile Include="Classification\MockStandardClassificationService.cs" />
+    <Compile Include="Classification\PredefinedClassificationTypeNames.cs" />
+    <Compile Include="Service\IOptionsService.cs" />
+    <Compile Include="Service\LanguageInfo.cs" />
+    <Compile Include="Service\LanguagePreferences.cs" />
+    <Compile Include="Service\OptionsService.cs" />
+    <Compile Include="Service\Service.cs" />
+    <Compile Include="Service\SettingsManagerCreator.cs" />
+    <Compile Include="Classification\Token.cs" />
+    <Compile Include="Classification\Tokenizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="2_Creating a Margin Glyph\TodoGlyphFactory.cs" />
     <Compile Include="2_Creating a Margin Glyph\TodoTagger.cs" />
     <Compile Include="3_Customizing the Text View\ViewPropertyModifier.cs" />
-    <Compile Include="ClassificationDefinitions\Squirrel.cs" />
-    <Compile Include="ClassificationDefinitions\SquirrelClassificationDefinition.cs" />
-    <Compile Include="ClassificationDefinitions\SquirrelFormat.cs" />
-    <Compile Include="ClassificationDefinitions\SquirrelProvider.cs" />
+    <Compile Include="Classification\Squirrel.cs" />
+    <Compile Include="Classification\SquirrelClassificationDefinition.cs" />
+    <Compile Include="Classification\SquirrelFormat.cs" />
+    <Compile Include="Classification\SquirrelProvider.cs" />
     <Compile Include="Package\SquirrelPackage.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +107,7 @@
     <Reference Include="Microsoft.VisualStudio.CommandBars, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.CoreUtility, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.VisualStudio.CoreUtility.15.0.26201\lib\net45\Microsoft.VisualStudio.CoreUtility.dll</HintPath>
       <Private>True</Private>
@@ -111,6 +116,7 @@
       <HintPath>..\packages\Microsoft.VisualStudio.Imaging.15.0.26201\lib\net45\Microsoft.VisualStudio.Imaging.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.Language.StandardClassification, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\packages\Microsoft.VisualStudio.OLE.Interop.7.10.6071\lib\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
       <Private>True</Private>
