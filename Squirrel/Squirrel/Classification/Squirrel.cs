@@ -29,6 +29,7 @@ namespace Squirrel
 			"default",
 			"break",
 		};
+		char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Squirrel"/> class.
@@ -75,32 +76,42 @@ namespace Squirrel
 		public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
 		{
 			var result = new List<ClassificationSpan>();
-			result.AddRange(GetKeywordList(span));
-			result.AddRange(GetCommentList(span));
+			result.AddRange(GetKeywordMatchList(span));
+			result.AddRange(GetCommentMatchList(span));
 
 			return result;
 		}
 
-		private List<ClassificationSpan> GetKeywordList(SnapshotSpan span)
+		private List<ClassificationSpan> GetKeywordMatchList(SnapshotSpan span)
 		{
 			var result = new List<ClassificationSpan>();
-			var text = span.GetText();
-			foreach(var keyword in keywords)
-			{
-				var index = text.IndexOf(keyword);
-				if (index >= 0)
-				{
-					var start = span.Start.Position + index;
 
-					var snapshotSpan = new SnapshotSpan(span.Snapshot, new Span(start, keyword.Length));
-					var classificationSpan = new ClassificationSpan(snapshotSpan, categoryMap[PredefinedClassificationTypeNames.Keyword]);
-					result.Add(classificationSpan);
+			var originalText = span.GetText();
+			var words = originalText.Split(delimiterChars);
+
+			foreach (var word in words)
+			{
+				foreach (var keyword in keywords)
+				{
+					if(word == keyword)
+					{
+						// TODO:複数個同じキーワードがあった場合の対応
+						var index = originalText.IndexOf(keyword);
+						if (index >= 0)
+						{
+							var start = span.Start.Position + index;
+
+							var snapshotSpan = new SnapshotSpan(span.Snapshot, new Span(start, keyword.Length));
+							var classificationSpan = new ClassificationSpan(snapshotSpan, categoryMap[PredefinedClassificationTypeNames.Keyword]);
+							result.Add(classificationSpan);
+						}
+					}
 				}
 			}
 			return result;
 		}
 
-		private List<ClassificationSpan> GetCommentList(SnapshotSpan span)
+		private List<ClassificationSpan> GetCommentMatchList(SnapshotSpan span)
 		{
 			var result = new List<ClassificationSpan>();
 
