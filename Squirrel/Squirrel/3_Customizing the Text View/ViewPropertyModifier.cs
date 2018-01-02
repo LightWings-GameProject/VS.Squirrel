@@ -23,6 +23,7 @@ namespace Squirrel
 
 		public void TextViewCreated(IWpfTextView textView)
 		{
+			return;
 			IEditorFormatMap formatMap = FormatMapService.GetEditorFormatMap(textView);
 
 			ResourceDictionary regularCaretProperties = formatMap.GetProperties("Caret");
