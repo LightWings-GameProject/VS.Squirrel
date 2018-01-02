@@ -29,7 +29,7 @@ namespace Squirrel
 			"default",
 			"break",
 		};
-		char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+		char[] delimiterChars = { ' ', ',', '.', ':', '\t', '(', ')', '{', '}', '[', ']' };
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Squirrel"/> class.
