@@ -1,4 +1,14 @@
-﻿using System.ComponentModel.Composition;
+﻿////////////////////////////////////////////////////////////////////////////////
+//
+// Light Wings GameProject
+//
+// (C) 2009 Light Wings GameProject.
+//
+// https://github.com/LightWings-GameProject
+//
+////////////////////////////////////////////////////////////////////////////////
+
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Shapes;
 using System.Windows.Media;

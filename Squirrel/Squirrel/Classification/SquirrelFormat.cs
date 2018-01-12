@@ -1,4 +1,14 @@
-﻿using System.ComponentModel.Composition;
+﻿////////////////////////////////////////////////////////////////////////////////
+//
+// Light Wings GameProject
+//
+// (C) 2009 Light Wings GameProject.
+//
+// https://github.com/LightWings-GameProject
+//
+////////////////////////////////////////////////////////////////////////////////
+
+using System.ComponentModel.Composition;
 using System.Windows.Media;
 using Microsoft.VisualStudio.Language.StandardClassification;
 using Microsoft.VisualStudio.Text.Classification;

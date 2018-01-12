@@ -1,4 +1,14 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////////////////////
+//
+// Light Wings GameProject
+//
+// (C) 2009 Light Wings GameProject.
+//
+// https://github.com/LightWings-GameProject
+//
+////////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.Language.StandardClassification;
 using Microsoft.VisualStudio.Text;
