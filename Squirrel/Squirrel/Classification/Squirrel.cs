@@ -31,13 +31,66 @@ namespace Squirrel
 			"extends",
 			"constructor",
 			"function",
+			"local",
+			"const",
+
+			// 条件分岐
 			"if",
 			"else",
-			"local",
 			"switch",
 			"case",
 			"default",
 			"break",
+
+			// 繰り返し
+			"for",
+			"while",
+		};
+		private readonly string[] operators =
+		{
+			// 四則演算
+			"+",
+			"-",
+			"*",
+			"/",
+			"%",
+			"+=",
+			"-=",
+			"*=",
+			"/=",
+			"%=",
+			"++",
+			"--",
+
+			// ビット演算
+			"&",
+			"|",
+			"^",
+			"~",
+			"<<",
+			">>",
+			">>>",
+
+			// 比較演算
+			"==",
+			"!=",
+			"<",
+			"<=",
+			">",
+			">=",
+			"&&",
+			"||",
+			"!",
+
+			// 代入演算子
+			"=",
+			"<-",
+			"|=",
+			"&=",
+
+			// 三項演算子
+			"?",
+			":",
 		};
 		char[] delimiterChars = { ' ', ',', '.', ':', '\t', '(', ')', '{', '}', '[', ']' };
 
@@ -56,6 +109,7 @@ namespace Squirrel
 			categoryMap[SquirrelPredefinedClassificationTypeNames.RegularExpression] = registry.GetClassificationType(SquirrelPredefinedClassificationTypeNames.RegularExpression);
 			// Include keyword for context-sensitive keywords
 			categoryMap[PredefinedClassificationTypeNames.Keyword] = registry.GetClassificationType(PredefinedClassificationTypeNames.Keyword);
+			categoryMap[PredefinedClassificationTypeNames.Operator] = registry.GetClassificationType(PredefinedClassificationTypeNames.Operator);
 		}
 
 		#region IClassifier
@@ -87,6 +141,7 @@ namespace Squirrel
 		{
 			var result = new List<ClassificationSpan>();
 			result.AddRange(GetKeywordMatchList(span));
+			result.AddRange(GetOperatorMatchList(span));
 			result.AddRange(GetCommentMatchList(span));
 
 			return result;
@@ -116,6 +171,27 @@ namespace Squirrel
 							result.Add(classificationSpan);
 						}
 					}
+				}
+			}
+			return result;
+		}
+
+		private List<ClassificationSpan> GetOperatorMatchList(SnapshotSpan span)
+		{
+			// TODO:同じ演算子が続く時のハイライト３
+			var result = new List<ClassificationSpan>();
+
+			foreach (var @operator in operators)
+			{
+				var originalText = span.GetText();
+				var index = originalText.IndexOf(@operator);
+				if (index >= 0)
+				{
+					var start = span.Start.Position + index;
+
+					var snapshotSpan = new SnapshotSpan(span.Snapshot, new Span(start, @operator.Length));
+					var classificationSpan = new ClassificationSpan(snapshotSpan, categoryMap[PredefinedClassificationTypeNames.Operator]);
+					result.Add(classificationSpan);
 				}
 			}
 			return result;
